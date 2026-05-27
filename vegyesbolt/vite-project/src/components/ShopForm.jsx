@@ -27,5 +27,20 @@ const ShopForm = ({ sendDataToApp }) => {
         return;
         }
     }
+    return(
+    <Card>
+        <form className={styles.form} onSubmit={handleSubmit}>
+            <label>Termék neve:</label>
+            <input type="text" ref={NameRef}/>
+            <label>ID:</label>
+            <input type="number" ref={IDRef}/>
+            <label>Termék tömege:</label>
+            <input type="number" ref={WeightRef}/>
+            <label>Termék leírása</label>
+            <input type="textbox" ref={DescriptionRef}/>
+            
+        </form>
+    </Card>
+    )
 }
 export default ShopForm;
