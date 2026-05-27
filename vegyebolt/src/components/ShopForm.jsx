@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Card from "../wrappers/Card";
-import Swal from "sweetalert2";
-import styles from "../wrappers/ShopForm.module.css";
+import Swal from 'sweetalert2'
+import styles from "./ShopForm.module.css";
 
 const ShopForm = ({ sendDataToApp }) => {
     const NameRef = useRef();
@@ -13,7 +13,7 @@ const ShopForm = ({ sendDataToApp }) => {
         event.preventDefault();
         summarizeShopData();
     };
-    const summarizeTravelData = () => {
+    const summarizeShopData = () => {
         const Name = NameRef.current.value;
         const Weight = WeightRef.current.value;
         const Description = DescriptionRef.current.value;
@@ -29,7 +29,7 @@ const ShopForm = ({ sendDataToApp }) => {
     }
     return(
     <Card>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <label>Termék neve:</label>
             <input type="text" ref={NameRef}/>
             <label>ID:</label>
@@ -38,7 +38,7 @@ const ShopForm = ({ sendDataToApp }) => {
             <input type="number" ref={WeightRef}/>
             <label>Termék leírása</label>
             <input type="textbox" ref={DescriptionRef}/>
-            
+            <button type="submit">Küldés</button>
         </form>
     </Card>
     )
