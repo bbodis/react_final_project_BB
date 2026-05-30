@@ -39,7 +39,7 @@ function App() {
         <AuthProvider>
         <NavBar />
         <Routes>
-          <Route path="/" element={<ShopList Shops={ShopData}/>} />
+          <Route path="/" element={<ShopList Shops={ShopData} deleteShop={deleteShop}/>} />
           <Route path='form' element={<ProtectedRoute><ShopForm sendDataToApp={handleShopData} /></ProtectedRoute>} />
           <Route path='login' element={<Login/>} />
           <Route path='/details/:id' element={<Details shops={ShopData}/>} />

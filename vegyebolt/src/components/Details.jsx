@@ -10,14 +10,9 @@ function Details({ shops }) {
   }
   return (
     <div>
-      <h1>{shop.destination}</h1>
-      <img
-        src={shop.img}
-        alt={shop.destination}
-        width="500"
-      />
       <p>
-        <strong>Leírás:</strong> {shop.notes}
+        <strong>Leírás:</strong><br/>
+        {shop.description}
       </p>
       <button onClick={() => navigate(-1)}>
         Vissza
