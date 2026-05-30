@@ -11,13 +11,11 @@ function App() {
   };
   return (
     <>
-      <AuthProvider>
         <NavBar />
         <Routes>
           <Route path="/" element={<ShopList Shops={ShopData}/>} />
           <Route path='form' element={<ShopForm sendDataToApp={handleShopData} />} />
         </Routes>
-      </AuthProvider>
     </>
   )
 }
