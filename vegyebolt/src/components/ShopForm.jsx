@@ -4,16 +4,20 @@ import Swal from 'sweetalert2';
 
 const ShopForm = ({ sendDataToApp }) => {
     const nameRef = useRef();
-    const weightRef = useRef();
     const categoryRef = useRef();
+    const imgRef = useRef();
+    const priceRef = useRef();
+    const stockRef = useRef();
     const descriptionRef = useRef();
     const handleSubmit = (event) => {
         event.preventDefault();
         const name = nameRef.current.value;
         const category = categoryRef.current.value;
-        const weight = weightRef.current.value;
+        const img = imgRef.current.value;
+        const price = priceRef.current.value;
+        const stock = stock.current.value;
         const description = descriptionRef.current.value;
-        if (!name || !category || !weight || !description) {
+        if (!name || !category || !description || !img || !price || !stock) {
             Swal.fire({
                 icon: "error",
                 title: "Hiba",
@@ -21,7 +25,7 @@ const ShopForm = ({ sendDataToApp }) => {
             });
             return;
         }
-        sendDataToApp({name, weight, category, description});
+        sendDataToApp({name, category, description, img, stock, price});
         Swal.fire({
             icon: "success",
             title: "Siker!",
@@ -43,8 +47,16 @@ const ShopForm = ({ sendDataToApp }) => {
                         <input type="text" id="category" ref={categoryRef}/>
                     </div>
                     <div>
-                        <label htmlFor="weight">Termék tömege (g)</label>
-                        <input type="number" id="weight" ref={weightRef}/>
+                        <label htmlFor="img">Kép URL címe</label>
+                        <input type="text" id="img" ref={imgRef}/>
+                    </div>
+                    <div>
+                        <label htmlFor="price"> Termék Ára (FT)</label>
+                        <input type="number" id="price" ref={priceRef}/>
+                    </div>
+                    <div>
+                        <label htmlFor="stock">Raktáron (db)</label>
+                        <input type="number" id="stock" ref={stockRef}/>
                     </div>
                     <div>
                         <label htmlFor="description">Termék leírása</label>
