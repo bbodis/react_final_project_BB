@@ -6,17 +6,16 @@ import NavBar from './components/NavBar';
 import './App.css'
 function App() {
   const [ShopData, setShopData] = useState([]);
-    const handleShopData = (data) => {
-      setShopData((prevData) => [...prevData, data]);
-      getShopData();
-    };
+  const handleShopData = (data) => {
+    setShopData((prevData) => [...prevData, data]);
+  };
   return (
     <>
       <AuthProvider>
         <NavBar />
         <Routes>
-          <Route path="/" element={<ShopList Shops={ShopData} deleteShop={deleteShop} />} />
-          <Route path='form' element={<ProtectedRoute><ShopForm sendDataToApp={handleShopData} /></ProtectedRoute>} />
+          <Route path="/" element={<ShopList Shops={ShopData}/>} />
+          <Route path='form' element={<ShopForm sendDataToApp={handleShopData} />} />
         </Routes>
       </AuthProvider>
     </>
