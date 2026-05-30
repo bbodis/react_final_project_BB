@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { AuthProvider } from './context/loginContext';
+import Login from './components/Login';
 import ShopForm from './components/ShopForm'
 import ShopList from './components/ShopList';
 import { Routes, Route } from 'react-router';
@@ -11,11 +13,14 @@ function App() {
   };
   return (
     <>
+        <AuthProvider>
         <NavBar />
         <Routes>
           <Route path="/" element={<ShopList Shops={ShopData}/>} />
           <Route path='form' element={<ShopForm sendDataToApp={handleShopData} />} />
+          <Route path='login' element={<Login/>} />
         </Routes>
+        </AuthProvider>
     </>
   )
 }
