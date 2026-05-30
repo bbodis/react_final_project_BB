@@ -1,46 +1,59 @@
 import { useRef, useState } from "react";
 import Card from "../wrappers/Card";
-import Swal from 'sweetalert2'
-import styles from "./ShopForm.module.css";
+import Swal from 'sweetalert2';
 
 const ShopForm = ({ sendDataToApp }) => {
-    const NameRef = useRef();
-    const WeightRef = useRef();
-    const DescriptionRef = useRef();
-    const IDRef = useRef();
-
+    const nameRef = useRef();
+    const weightRef = useRef();
+    const categoryRef = useRef();
+    const descriptionRef = useRef();
     const handleSubmit = (event) => {
         event.preventDefault();
-        summarizeShopData();
-    };
-    const summarizeShopData = () => {
-        const Name = NameRef.current.value;
-        const Weight = WeightRef.current.value;
-        const Description = DescriptionRef.current.value;
-        const ID = IDRef.current.value;
-        if (!Name || !Weight || !Description || !ID) {
-              Swal.fire({
+        const name = nameRef.current.value;
+        const category = categoryRef.current.value;
+        const weight = weightRef.current.value;
+        const description = descriptionRef.current.value;
+        if (!name || !category || !weight || !description) {
+            Swal.fire({
                 icon: "error",
                 title: "Hiba",
-                text: "Kérem töltse ki a kötelező mezőket!",
-        });
-        return;
+                text: "Kérem töltsön ki minden mezőt!",
+            });
+            return;
         }
+        sendDataToApp({name, weight, category, description});
+        Swal.fire({
+            icon: "success",
+            title: "Siker!",
+            text: "Termék hozzáadva.",
+            timer: 1500,
+            showConfirmButton: false
+        });
     }
-    return(
-    <Card>
-        <form onSubmit={handleSubmit}>
-            <label>Termék neve:</label>
-            <input type="text" ref={NameRef}/>
-            <label>ID:</label>
-            <input type="number" ref={IDRef}/>
-            <label>Termék tömege:</label>
-            <input type="number" ref={WeightRef}/>
-            <label>Termék leírása</label>
-            <input type="textbox" ref={DescriptionRef}/>
-            <button type="submit">Küldés</button>
-        </form>
-    </Card>
-    )
-}
+    return (
+        <Card>
+            <div>
+                <h2>Új termék hozzáadása</h2>
+                <form onSubmit={handleSubmit}>
+                    <div><label htmlFor="name">Termék neve</label>
+                        <input type="text" id="name" ref={nameRef}/>
+                    </div>
+                    <div>
+                        <label htmlFor="category">Termék kategóriája</label>
+                        <input type="text" id="category" ref={categoryRef}/>
+                    </div>
+                    <div>
+                        <label htmlFor="weight">Termék tömege (g)</label>
+                        <input type="number" id="weight" ref={weightRef}/>
+                    </div>
+                    <div>
+                        <label htmlFor="description">Termék leírása</label>
+                        <input type="text" id="description" ref={descriptionRef}/>
+                    </div>
+                    <button type="submit">Küldés</button>
+                </form>
+            </div>
+        </Card >
+    );
+};
 export default ShopForm;
