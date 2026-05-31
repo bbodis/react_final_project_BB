@@ -9,7 +9,7 @@ const ShopForm = ({ sendDataToApp }) => {
     const priceRef = useRef();
     const stockRef = useRef();
     const descriptionRef = useRef();
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const name = nameRef.current.value;
         const category = categoryRef.current.value;
@@ -25,28 +25,52 @@ const ShopForm = ({ sendDataToApp }) => {
             });
             return;
         }
-        sendDataToApp({
-            name, 
-            category, 
-            description, 
-            img, 
-            stock: Number(stock), 
-            price: Number(price)
-        });
-        nameRef.current.value = "";
-        categoryRef.current.value = "";
-        imgRef.current.value = "";
-        priceRef.current.value = "";
-        stockRef.current.value = "";
-        descriptionRef.current.value = "";
-        Swal.fire({
-            icon: "success",
-            title: "Siker!",
-            text: "Termék hozzáadva.",
-            timer: 1500,
-            showConfirmButton: false
-        })
+        const success = await saveShopDataToDatabase(name, category, description, img, stock, price);
+        if (success) {
+            nameRef.current.value = "";
+            categoryRef.current.value = "";
+            imgRef.current.value = "";
+            priceRef.current.value = "";
+            stockRef.current.value = "";
+            descriptionRef.current.value = "";
+
+            Swal.fire({
+                icon: "success",
+                title: "Siker!",
+                text: "Termék hozzáadva.",
+                timer: 1500,
+                showConfirmButton: false
+            });
+        }
     }
+    const saveShopDataToDatabase = async (name, category, description, img, stock, price) => {
+          try {
+            const response = await fetch("http://localhost:3000/products", { 
+    
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "authorization": localStorage.getItem("token"),
+              },
+              body: JSON.stringify({name: name, category: category, description: description, img_url: img, stock: stock, price: price}),
+            });
+            if (response.ok) {
+              const data = await response.json();
+              sendDataToApp(data);
+              return true;
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Hiba",
+                text: "A termék mentése nem sikerült!",
+              });
+              return false;
+            }
+          } catch (error) {
+            console.error("Hiba:", error);
+            return false;
+          }
+        };
     return (
         <Card>
             <div>
