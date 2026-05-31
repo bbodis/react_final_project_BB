@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Card from "../wrappers/Card";
 import Swal from 'sweetalert2';
 
@@ -15,7 +15,7 @@ const ShopForm = ({ sendDataToApp }) => {
         const category = categoryRef.current.value;
         const img = imgRef.current.value;
         const price = priceRef.current.value;
-        const stock = stock.current.value;
+        const stock = stockRef.current.value;
         const description = descriptionRef.current.value;
         if (!name || !category || !description || !img || !price || !stock) {
             Swal.fire({
@@ -25,21 +25,35 @@ const ShopForm = ({ sendDataToApp }) => {
             });
             return;
         }
-        sendDataToApp({name, category, description, img, stock, price});
+        sendDataToApp({
+            name, 
+            category, 
+            description, 
+            img, 
+            stock: Number(stock), 
+            price: Number(price)
+        });
+        nameRef.current.value = "";
+        categoryRef.current.value = "";
+        imgRef.current.value = "";
+        priceRef.current.value = "";
+        stockRef.current.value = "";
+        descriptionRef.current.value = "";
         Swal.fire({
             icon: "success",
             title: "Siker!",
             text: "Termék hozzáadva.",
             timer: 1500,
             showConfirmButton: false
-        });
+        })
     }
     return (
         <Card>
             <div>
                 <h2>Új termék hozzáadása</h2>
                 <form onSubmit={handleSubmit}>
-                    <div><label htmlFor="name">Termék neve</label>
+                    <div>
+                        <label htmlFor="name">Termék neve</label>
                         <input type="text" id="name" ref={nameRef}/>
                     </div>
                     <div>
