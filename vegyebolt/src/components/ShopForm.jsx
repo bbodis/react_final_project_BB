@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import styles from "./ShopForm.module.css";
 import Card from "../wrappers/Card";
 import Swal from 'sweetalert2';
 
@@ -77,30 +78,31 @@ const ShopForm = ({ sendDataToApp }) => {
                 <h2>Új termék hozzáadása</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="name">Termék neve</label>
-                        <input type="text" id="name" ref={nameRef}/>
+                        <label>Termék neve</label><br />
+                        <input type="text" ref={nameRef}/>
                     </div>
                     <div>
-                        <label htmlFor="category">Termék kategóriája</label>
-                        <input type="text" id="category" ref={categoryRef}/>
+                        <label>Termék kategóriája</label><br />
+                        <input type="text" ref={categoryRef}/>
                     </div>
                     <div>
-                        <label htmlFor="img_url">Kép URL címe</label>
-                        <input type="text" id="img_url" ref={img_urlRef}/>
+                        <label>Kép URL címe</label><br />
+                        <input type="text" ref={img_urlRef}/>
                     </div>
                     <div>
-                        <label htmlFor="price"> Termék Ára (FT)</label>
-                        <input type="number" id="price" ref={priceRef}/>
+                        <label> Termék Ára (FT)</label><br />
+                        <input type="number" ref={priceRef}/>
                     </div>
                     <div>
-                        <label htmlFor="stock">Raktáron (db)</label>
-                        <input type="number" id="stock" ref={stockRef}/>
+                        <label>Raktáron (db)</label><br />
+                        <input type="number" ref={stockRef}/>
                     </div>
                     <div>
-                        <label htmlFor="description">Termék leírása</label>
-                        <input type="text" id="description" ref={descriptionRef}/>
+                        <label>Termék leírása</label><br />
+                        <input type="text" ref={descriptionRef}/>
                     </div>
-                    <button type="submit">Küldés</button>
+                    <br />
+                    <button type="submit" className={styles.sendBtn}>Küldés</button>
                 </form>
             </div>
         </Card >

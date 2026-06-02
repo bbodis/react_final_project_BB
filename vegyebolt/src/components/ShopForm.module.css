@@ -1,0 +1,14 @@
+.sendBtn{
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  background-color: #3498db;
+  color: white;
+}
+.sendBtn:hover {
+  background-color: #2980b9;
+}
