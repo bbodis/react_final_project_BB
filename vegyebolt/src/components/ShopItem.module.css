@@ -1,0 +1,93 @@
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+.productImage {
+  width: 100%;
+  max-width: 200px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.infoSection {
+  text-align: center;
+  width: 100%;
+}
+.categoryTag {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+.title {
+  font-size: 22px;
+  color: #222;
+  margin: 0 0 8px 0;
+}
+.description {
+  font-size: 15px;
+  color: #555;
+  margin: 0 0 16px 0;
+  line-height: 1.4;
+}
+.metaInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 8px;
+}
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+.stock {
+  font-size: 14px;
+  color: #7f8c8d;
+  background-color: #f8f9fa;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+  margin-top: 8px;
+}
+.detailsLink {
+  text-decoration: none;
+}
+.detailsBtn, .deleteBtn {
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+.detailsBtn {
+  background-color: #3498db;
+  color: white;
+}
+.detailsBtn:hover {
+  background-color: #2980b9;
+}
+.deleteBtn {
+  background-color: #fff;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+.deleteBtn:hover {
+  background-color: #e74c3c;
+  color: white;
+}

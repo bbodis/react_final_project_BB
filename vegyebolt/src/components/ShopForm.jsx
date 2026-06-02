@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 const ShopForm = ({ sendDataToApp }) => {
     const nameRef = useRef();
     const categoryRef = useRef();
-    const imgRef = useRef();
+    const img_urlRef = useRef();
     const priceRef = useRef();
     const stockRef = useRef();
     const descriptionRef = useRef();
@@ -13,11 +13,11 @@ const ShopForm = ({ sendDataToApp }) => {
         event.preventDefault();
         const name = nameRef.current.value;
         const category = categoryRef.current.value;
-        const img = imgRef.current.value;
+        const img_url = img_urlRef.current.value;
         const price = priceRef.current.value;
         const stock = stockRef.current.value;
         const description = descriptionRef.current.value;
-        if (!name || !category || !description || !img || !price || !stock) {
+        if (!name || !category || !description || !img_url || !price || !stock) {
             Swal.fire({
                 icon: "error",
                 title: "Hiba",
@@ -25,11 +25,11 @@ const ShopForm = ({ sendDataToApp }) => {
             });
             return;
         }
-        const success = await saveShopDataToDatabase(name, category, description, img, stock, price);
+        const success = await saveShopDataToDatabase(name, category, description, img_url, stock, price);
         if (success) {
             nameRef.current.value = "";
             categoryRef.current.value = "";
-            imgRef.current.value = "";
+            img_urlRef.current.value = "";
             priceRef.current.value = "";
             stockRef.current.value = "";
             descriptionRef.current.value = "";
@@ -43,7 +43,7 @@ const ShopForm = ({ sendDataToApp }) => {
             });
         }
     }
-    const saveShopDataToDatabase = async (name, category, description, img, stock, price) => {
+    const saveShopDataToDatabase = async (name, category, description, img_url, stock, price) => {
           try {
             const response = await fetch("http://localhost:3000/products", { 
     
@@ -52,7 +52,7 @@ const ShopForm = ({ sendDataToApp }) => {
                 "Content-Type": "application/json",
                 "authorization": localStorage.getItem("token"),
               },
-              body: JSON.stringify({name: name, category: category, description: description, img_url: img, stock: stock, price: price}),
+              body: JSON.stringify({name: name, category: category, description: description, img_url: img_url, stock: stock, price: price}),
             });
             if (response.ok) {
               const data = await response.json();
@@ -85,8 +85,8 @@ const ShopForm = ({ sendDataToApp }) => {
                         <input type="text" id="category" ref={categoryRef}/>
                     </div>
                     <div>
-                        <label htmlFor="img">Kép URL címe</label>
-                        <input type="text" id="img" ref={imgRef}/>
+                        <label htmlFor="img_url">Kép URL címe</label>
+                        <input type="text" id="img_url" ref={img_urlRef}/>
                     </div>
                     <div>
                         <label htmlFor="price"> Termék Ára (FT)</label>

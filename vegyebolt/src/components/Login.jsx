@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import styles from './Login.module.css';
 import { useAuth } from '../context/loginContext';
 import { useNavigate } from 'react-router-dom';
-
+import Card from '../wrappers/Card';
 
 const Login = () => {
   const usernameRef = useRef();
