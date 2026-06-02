@@ -39,7 +39,6 @@ const ShopItem = ({ name, category, img_url, price, stock, description, id, dele
         <div className={styles.infoSection}>
           <span className={styles.categoryTag}>{category}</span>
           <h2 className={styles.title}>{name}</h2>
-          <p className={styles.description}>{description}</p>
           <div className={styles.metaInfo}>
             <span className={styles.price}>{Number(price)} Ft</span>
             <span className={styles.stock}>Készleten: {stock} db</span>

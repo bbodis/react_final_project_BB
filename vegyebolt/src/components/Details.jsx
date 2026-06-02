@@ -1,4 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
+import styles from "./Details.module.css"
+import Card from "../wrappers/Card";
 function Details({ shops }) {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -9,15 +11,15 @@ function Details({ shops }) {
     return <h1>Nincs ilyen utazás</h1>;
   }
   return (
+    <Card>
     <div>
-      <p>
-        <strong>Leírás:</strong><br/>
-        {shop.description}
+      <p><strong>Leírás:</strong></p>
+      <p className={styles.margin}>
+      {shop.description}
       </p>
-      <button onClick={() => navigate(-1)}>
-        Vissza
-      </button>
+      <button onClick={() => navigate(-1)} className={styles.backBtn}>Vissza</button>
     </div>
+    </Card>
   );
 }
 export default Details;
